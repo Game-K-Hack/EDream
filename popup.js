@@ -1,18 +1,18 @@
 document.addEventListener("DOMContentLoaded", function () {
 
+    let number_of_stars = 5;
+
     chrome.storage.local.set({data: []});
 
     document.getElementById("home").addEventListener("click", function () {
         chrome.tabs.update({ url: chrome.runtime.getURL("home.html") });
     });
 
-    function remove() {
-        // Script
+    document.getElementById("remove").addEventListener("click", function () {
         document.querySelector("p").innerText = "Add Product";
         document.getElementById("rate").style.display = "";
         document.getElementById("remove").style.display = "none";
-    }
-    document.getElementById("remove").addEventListener("click", function () { remove(); });
+    });
 
     function _add_product_(rate_level) {
 
@@ -23,7 +23,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
             console.log(document.url);
 
-            // console.log(document.querySelector("h1").innerText);
             console.log(document.url);
             console.log(document.getElementById("main-image-container").querySelector("ul img").src);
             console.log(document.getElementById("corePriceDisplay_desktop_feature_div").querySelector("div span span").innerText);
@@ -63,19 +62,10 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("p").innerText = "Product Added";
         document.getElementById("remove").style.display = "";
     }
-    document.getElementById("rate_1").addEventListener("click", function () {
-        _add_product_(1);
-    });
-    document.getElementById("rate_2").addEventListener("click", function () {
-        _add_product_(2);
-    });
-    document.getElementById("rate_3").addEventListener("click", function () {
-        _add_product_(3);
-    });
-    document.getElementById("rate_4").addEventListener("click", function () {
-        _add_product_(4);
-    });
-    document.getElementById("rate_5").addEventListener("click", function () {
-        _add_product_(5);
-    });
+
+    for (let i=1; i<number_of_stars+1; i++) {
+        document.getElementById("rate_" + i).addEventListener("click", function () {
+            _add_product_(i);
+        });
+    }
 });
