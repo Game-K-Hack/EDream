@@ -1,0 +1,18 @@
+{
+    "manifest_version": 3,
+    "name": "EDream",
+    "version": "1.0",
+    "description": "",
+    "permissions": [
+        "storage",
+        "activeTab"
+    ],
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+            "128": "assets/icon/icon-128.png", 
+            "256": "assets/icon/icon-256.png", 
+            "512": "assets/icon/icon-512.png"
+        }
+    }
+}
