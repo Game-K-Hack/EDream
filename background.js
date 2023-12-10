@@ -27,6 +27,7 @@ function add_product(rate_level) {
     image: document.querySelector(`div[id="zoomWindow"] img`).src,
     price: document.querySelector(`span[id="price"]`).innerText,
     rate: rate_level,
+    timestamp: Math.floor(Date.now()/1000)
   };
 
   chrome.storage.local.get(["data"], function (result) {
