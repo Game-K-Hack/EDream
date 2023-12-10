@@ -1,11 +1,11 @@
-// Constante
 const NUMBER_OF_STARS = 5;
 
 document.addEventListener("DOMContentLoaded", async function () {
 
     document.getElementById("home").addEventListener("click", function () {
-        chrome.tabs.create({ url: chrome.runtime.getURL("home.html") });
-        document.close();
+        chrome.tabs.create({
+            url: chrome.runtime.getURL("../page/index.html")
+        });
         window.close();
     });
 
@@ -13,6 +13,26 @@ document.addEventListener("DOMContentLoaded", async function () {
         document.querySelector("p").innerText = "Add Product";
         document.getElementById("rate").style.display = "";
         document.getElementById("remove").style.display = "none";
+    });
+
+    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+        chrome.storage.local.get(["data"], function (result) {
+            if (chrome.runtime.lastError) {
+                console.error(
+                    'chrome.storage.local.get("data"), Erreur de stockage:',
+                    chrome.runtime.lastError
+                );
+            } else {
+                if (result.data != undefined) {
+                    let data = result.data;
+                    if (data.some(d => d.url == tabs[0].url)) {
+                        document.querySelector("p").innerText = "Remove Product";
+                        document.getElementById("rate").style.display = "none";
+                        document.getElementById("remove").style.display = "";
+                    }
+                }
+            }
+        });
     });
 
     let star_base = document.getElementById("rate_base");

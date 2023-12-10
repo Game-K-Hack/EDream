@@ -18,28 +18,9 @@ function showPopup(message, color) {
   }, 2000);
 }
 
-function err(msg) {
-  chrome.runtime.sendMessage({
-    action: "showPopup", 
-    message: "Le produit n'a pas pu être ajouté", 
-    color: "#ff5555"
-  });
-  console.error("Erreur de stockage:", msg);
-}
-
-function ok(msg) {
-  chrome.runtime.sendMessage({
-    action: "showPopup", 
-    message: "Le produit a bien été ajouté", 
-    color: "#4CAF50"
-  });
-  console.error(msg);
-}
-
 function add_product(rate_level) {
   console.log("Add Product");
 
-  let data = [];
   let product = {
     title: document.querySelector(`h1[id="title"] span[id="productTitle"]`).innerText,
     url: document.URL,
@@ -49,23 +30,35 @@ function add_product(rate_level) {
   };
 
   chrome.storage.local.get(["data"], function (result) {
-    if (chrome.runtime.lastError) {
-      console.error(
-        'chrome.storage.local.get("data"), Erreur de stockage:',
-        chrome.runtime.lastError
-      );
-    } else {
+    let data = [];
+
+    if (result.data != undefined) {
       data = result.data;
     }
-  });
 
-  data.push(product);
+    console.debug(product);
 
-  chrome.storage.local.set({ data: data }, function () {
-    if (chrome.runtime.lastError) {
-      err(chrome.runtime.lastError);
+    if (!data.some(d => d.url == product.url)) {
+      data.push(product);
+      chrome.storage.local.set({ data: data }, function () {
+        if (chrome.runtime.lastError) {
+          chrome.runtime.sendMessage({
+            action: "showPopup", 
+            message: "Le produit n'a pas pu être ajouté", 
+            color: "#ff5555"
+          });
+          console.error("Erreur de stockage:", chrome.runtime.lastError);
+        } else {
+          chrome.runtime.sendMessage({
+            action: "showPopup", 
+            message: "Le produit a bien été ajouté", 
+            color: "#4CAF50"
+          });
+          console.info("Produit sauvegardé avec succès");
+        }
+      });
     } else {
-      ok("Produit sauvegardé avec succès");
+      console.warn("Le produit est déjà enregistré");
     }
   });
 }
@@ -73,7 +66,6 @@ function add_product(rate_level) {
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   if (request.action == "showPopup") {
     chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-      // Appeler la fonction avec le message et la couleur spécifiés
       chrome.scripting.executeScript({
         target: { tabId: tabs[0].id },
         func: showPopup,
@@ -82,7 +74,6 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     });
   } else if (request.action == "addProduct") {
     chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-      // Appeler la fonction avec le message et la couleur spécifiés
       chrome.scripting.executeScript({
         target: { tabId: tabs[0].id },
         func: add_product,
