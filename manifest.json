@@ -1,18 +1,33 @@
 {
     "manifest_version": 3,
+
     "name": "EDream",
     "version": "1.0",
     "description": "",
+    "homepage_url": "https://github.com/Game-K-Hack",
+    "icons": {
+        "128": "assets/icon/icon-128.png", 
+        "256": "assets/icon/icon-256.png", 
+        "512": "assets/icon/icon-512.png"
+    },
+
     "permissions": [
         "storage",
-        "activeTab"
+        "activeTab",
+        "scripting"
     ],
+
     "action": {
-        "default_popup": "popup.html",
+        "default_popup": "popup/index.html",
+        "default_title": "EDream",
         "default_icon": {
             "128": "assets/icon/icon-128.png", 
             "256": "assets/icon/icon-256.png", 
             "512": "assets/icon/icon-512.png"
         }
-    }
+    },
+
+    "background": {
+        "scripts": ["background.js"]
+    }    
 }
