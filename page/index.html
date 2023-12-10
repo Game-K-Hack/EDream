@@ -24,9 +24,11 @@
 
   <div class="container">
 
-    <h1 class="wt fft">EDream</h1>
+    <h1 id="title-page" class="wt fft">EDream</h1>
+    <h1 id="err-title" class="wt fft" style="display: none;font-size: 3em;">Data not found</h1>
+    <h1 id="err-description" class="wt fft" style="display: none;font-size: 1em;">Please register a product before viewing this page</h1>
 
-    <div class="search-box">
+    <div id="search-box" class="search-box">
       <div class="search-icon">
         <!-- <i class="wt fa fa-search search-icon"></i> -->
         <i class="wt fa-solid fa-magnifying-glass fa-rotate-90"></i>
@@ -46,96 +48,17 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-md-3 mb-3">
-        <div class="card overflow-hidden shadow"> <img class="card-img-top"
-            src="https://technext.github.io/jadoo/v1.0.0/assets/img/dest/dest1.jpg" alt="Rome, Italty">
-          <div class="card-body py-4 px-3">
-            <div class="d-flex flex-column flex-lg-row justify-content-between mb-3">
-              <h4 class="text-secondary fw-medium truncate-text">
-                <a class="link-900 text-decoration-none stretched-link" href="#!">Rome, Italty, Rome, Italty, Rome,
-                  Italty, Rome, Italty, Rome, Italty, Rome, Italty, Rome, Italty</a>
-              </h4>
-            </div>
-            <div class="d-flex align-items-center">
-              <i class="fa-solid fa-star" alt="navigation"></i>
-              <i class="fa-solid fa-star" alt="navigation"></i>
-              <i class="fa-solid fa-star" alt="navigation"></i>
-              <i class="fa-regular fa-star" alt="navigation"></i>
-              <i class="fa-regular fa-star" alt="navigation"></i>
-              <span class="fs-1 fw-medium">$5,42k</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 mb-3">
-        <div class="card overflow-hidden shadow"> <img class="card-img-top"
-            src="https://technext.github.io/jadoo/v1.0.0/assets/img/dest/dest2.jpg" alt="London, UK">
-          <div class="card-body py-4 px-3">
-            <div class="d-flex flex-column flex-lg-row justify-content-between mb-3">
-              <h4 class="text-secondary fw-medium">
-                <a class="link-900 text-decoration-none stretched-link"
-                  href="#!">London, UK</a>
-              </h4>
-            </div>
-            <div class="d-flex align-items-center">
-              <i class="fa-solid fa-star" alt="navigation"></i>
-              <i class="fa-solid fa-star" alt="navigation"></i>
-              <i class="fa-solid fa-star" alt="navigation"></i>
-              <i class="fa-regular fa-star" alt="navigation"></i>
-              <i class="fa-regular fa-star" alt="navigation"></i>
-              <span class="fs-1 fw-medium">$5,42k</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 mb-3">
-        <div class="card overflow-hidden shadow"> <img class="card-img-top"
-            src="https://technext.github.io/jadoo/v1.0.0/assets/img/dest/dest3.jpg" alt="Full Europe">
-          <div class="card-body py-4 px-3">
-            <div class="d-flex flex-column flex-lg-row justify-content-between mb-3">
-              <h4 class="text-secondary fw-medium">
-                <a class="link-900 text-decoration-none stretched-link"
-                  href="#!">Full Europe</a>
-              </h4>
-            </div>
-            <div class="d-flex align-items-center">
-              <i class="fa-solid fa-star" alt="navigation"></i>
-              <i class="fa-solid fa-star" alt="navigation"></i>
-              <i class="fa-solid fa-star" alt="navigation"></i>
-              <i class="fa-regular fa-star" alt="navigation"></i>
-              <i class="fa-regular fa-star" alt="navigation"></i>
-              <span class="fs-1 fw-medium">$5,42k</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 mb-3">
-        <div class="card overflow-hidden shadow"> <img class="card-img-top"
-            src="https://technext.github.io/jadoo/v1.0.0/assets/img/dest/dest3.jpg" alt="Full Europe">
-          <div class="card-body py-4 px-3">
-            <div class="d-flex flex-column flex-lg-row justify-content-between mb-3">
-              <h4 class="text-secondary fw-medium">
-                <a class="link-900 text-decoration-none stretched-link"
-                  href="#!">Full Europe</a>
-              </h4>
-            </div>
-            <div class="d-flex align-items-center">
-              <i class="fa-solid fa-star" alt="navigation"></i>
-              <i class="fa-solid fa-star" alt="navigation"></i>
-              <i class="fa-solid fa-star" alt="navigation"></i>
-              <i class="fa-regular fa-star" alt="navigation"></i>
-              <i class="fa-regular fa-star" alt="navigation"></i>
-              <span class="fs-1 fw-medium">$5,42k</span>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div id="products" class="row">
+      <!-- Autocomplete by JavaScript -->
     </div>
+
   </div>
 
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
+  <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script> -->
+  <script src="./animation.js"></script>
   <script src="./script.js"></script>
 </body>
 
 </html>
+
+

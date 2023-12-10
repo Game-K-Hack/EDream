@@ -19,16 +19,21 @@ function showPopup(message, color) {
 }
 
 function add_product(rate_level) {
-  console.log("Add Product");
+
+  console.log("ADDOK");
 
   let product = {
     title: document.querySelector(`h1[id="title"] span[id="productTitle"]`).innerText,
     url: document.URL,
-    image: document.querySelector(`div[id="zoomWindow"] img`).src,
-    price: document.querySelector(`span[id="price"]`).innerText,
+    image: document.querySelector(`div[id="main-image-container"] img[id="landingImage"]`).dataset.oldHires, //document.querySelector(`div[id="zoomWindow"] img`).src
+    price: document.querySelector(`div[id="desktop_buybox"]`).innerText.match("[0-9]{1,99}[,.]{0,1}[0-9]{0,99}.{0,1}[\$€£¥₽₩฿₺₹₴₱₦₢₡₵¢]{1}")[0],
+    //document.querySelector(`div[id="buyBoxAccordion"]`).innerText.split("\n")[0]
+    //document.querySelector(`span[id="price"]`).innerText
     rate: rate_level,
     timestamp: Math.floor(Date.now()/1000)
   };
+
+  console.debug(product);
 
   chrome.storage.local.get(["data"], function (result) {
     let data = [];
@@ -36,8 +41,6 @@ function add_product(rate_level) {
     if (result.data != undefined) {
       data = result.data;
     }
-
-    console.debug(product);
 
     if (!data.some(d => d.url == product.url)) {
       data.push(product);
