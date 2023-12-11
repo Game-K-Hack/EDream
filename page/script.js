@@ -4,7 +4,7 @@ function pattern(title, image, price, url, rate) {
     let rate_stars = "";
     for (let i = 0; i < rate; i++) {rate_stars += solid}
     for (let i = 0; i < (5 - rate); i++) {rate_stars += regular}
-    return `<div class="col-md-3 mb-3">
+    return `<div class="col-md-2-5 mb-2-5">
         <div class="card overflow-hidden shadow">
         <img class="card-img-top" src="${image}" alt="Image of '${title}'">
         <div class="card-body py-4 px-3">
