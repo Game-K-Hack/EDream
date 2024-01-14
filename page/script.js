@@ -18,7 +18,50 @@ function pattern(title, image, price, url, rate) {
             </div>
         </div>
         </div>
-    </div>`;
+    </div>
+    <script>
+        console.log("script");
+        const img = new Image();
+        img.onload = function() {
+            draw(this.width, this.height, "${image}");
+        }
+        img.src = '${image}';
+    </script>`;
+}
+
+function draw(w, h, src) {
+    console.log("DRAW");
+    let canvas = document.createElement('canvas');
+    let ctx = canvas.getContext("2d");
+    
+    let size = 500;
+    let x = size;
+    let y = size;
+    let border = 10;
+    
+    canvas.width  = size+(border*2);
+    canvas.height = size+(border*2);
+    
+    ctx.fillStyle = "white";
+    ctx.fillRect(0, 0, size+(border*2), size+(border*2));
+    
+    if (w <= h) {
+        x = (size*w)/h;
+    } else {
+        y = (size*h)/w;
+    }
+
+    ctx.drawImage(
+        document.querySelector(`img[src=${src}]`),
+        ((size-x)/2)+border, 
+        ((size-y)/2)+border, 
+        x, 
+        y
+    );
+
+    console.log(canvas.toDataURL());
+
+    document.querySelector(`img[src=${src}]`).src = canvas.toDataURL();
 }
 
 document.addEventListener("DOMContentLoaded", async function () {
@@ -26,8 +69,8 @@ document.addEventListener("DOMContentLoaded", async function () {
         let data = result.data;
     
         if (data != undefined && data.length > 0) {
-          for (let i = 0; i < data.length; i++) {
-            let product = data[i];
+          for (const element of data) {
+            let product = element;
             document.getElementById("products").innerHTML += pattern(
                 product.title, product.image, product.price, product.url, product.rate
             );

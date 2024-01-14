@@ -1,0 +1,37 @@
+<html lang="en">
+  <style>
+    .conteneur {
+        position: relative;
+    }
+
+    .element {
+        position: absolute;
+        top: 50px;  /* Ajustez la valeur top selon vos besoins */
+        left: 50px; /* Ajustez la valeur left selon vos besoins */
+        background-color: red;
+    }
+  </style>
+  <body style="background-color: #000">
+    <div class="conteneur">
+      <img class="element" id="source" src="https://m.media-amazon.com/images/I/41rvccXi6HL._AC_SX425_.jpg"/>
+    </div>
+  </body>
+
+  <script>
+    function draw(image) {
+      let size = 500;
+      let w = image.clientWidth;
+      let h = image.clientHeight;
+
+      if (this.width <= this.height) {
+        image.style.width = (size * this.width) / this.height;
+        image.style.height = size;
+      } else {
+        image.style.height = (size * this.height) / this.width;
+        image.style.width = size;
+      }
+    }
+
+    draw(document.getElementById("source"))
+  </script>
+</html>
