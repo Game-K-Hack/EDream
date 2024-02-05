@@ -21,41 +21,6 @@ function pattern(title, image, price, url, rate) {
     </div>`;
 }
 
-function draw(w, h, src) {
-    console.log("DRAW");
-    let canvas = document.createElement('canvas');
-    let ctx = canvas.getContext("2d");
-    
-    let size = 500;
-    let x = size;
-    let y = size;
-    let border = 10;
-    
-    canvas.width  = size+(border*2);
-    canvas.height = size+(border*2);
-    
-    ctx.fillStyle = "white";
-    ctx.fillRect(0, 0, size+(border*2), size+(border*2));
-    
-    if (w <= h) {
-        x = (size*w)/h;
-    } else {
-        y = (size*h)/w;
-    }
-
-    ctx.drawImage(
-        document.querySelector(`img[src=${src}]`),
-        ((size-x)/2)+border, 
-        ((size-y)/2)+border, 
-        x, 
-        y
-    );
-
-    console.log(canvas.toDataURL());
-
-    document.querySelector(`img[src=${src}]`).src = canvas.toDataURL();
-}
-
 document.addEventListener("DOMContentLoaded", async function () {
     chrome.storage.local.get(["data"], function (result) {
         let data = result.data;
