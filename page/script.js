@@ -5,28 +5,20 @@ function pattern(title, image, price, url, rate) {
     for (let i = 0; i < rate; i++) {rate_stars += solid}
     for (let i = 0; i < (5 - rate); i++) {rate_stars += regular}
     return `<div class="col-md-2-5 mb-2-5">
-        <div class="card overflow-hidden shadow">
-        <img class="card-img-top" src="${image}" alt="Image of '${title}'">
-        <div class="card-body py-4 px-3">
-            <div class="d-flex flex-column flex-lg-row justify-content-between mb-3">
-            <h4 class="text-secondary fw-medium truncate-text">
-                <a id="title-url" class="link-900 text-decoration-none stretched-link" href="${url}">${title}</a>
-            </h4>
-            </div>
-            <div class="d-flex align-items-center">
-            ${rate_stars}<span class="fs-1 fw-medium">${price}</span>
+        <div class="card overflow-hidden shadow test">
+            <img class="card-img-top" src="${image}" alt="Image of '${title}'">
+            <div class="card-body py-4 px-3">
+                <div class="d-flex flex-column flex-lg-row justify-content-between mb-3">
+                <h4 class="text-secondary fw-medium truncate-text">
+                    <a id="title-url" class="link-900 text-decoration-none stretched-link" href="${url}">${title}</a>
+                </h4>
+                </div>
+                <div class="d-flex align-items-center">
+                ${rate_stars}<span class="fs-1 fw-medium">${price}</span>
+                </div>
             </div>
         </div>
-        </div>
-    </div>
-    <script>
-        console.log("script");
-        const img = new Image();
-        img.onload = function() {
-            draw(this.width, this.height, "${image}");
-        }
-        img.src = '${image}';
-    </script>`;
+    </div>`;
 }
 
 function draw(w, h, src) {
